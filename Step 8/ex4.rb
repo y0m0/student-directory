@@ -1,10 +1,9 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
-  # create an empty array
   students = []
+  puts "Please enter the names of the student"
   # get the first name
   name = gets.chomp
+
   # while the name is not empty repeat this
   while !name.empty? do
     # add student hash to the array
