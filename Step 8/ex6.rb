@@ -3,7 +3,6 @@ def input_students
   puts "Please enter the names of the student"
   # get the first name
   name = gets.chomp
-
   # while the name is not empty repeat this
   while !name.empty? do
     # add student hash to the array
@@ -19,6 +18,7 @@ end
   puts "The students of Villains Academy".center(40)
   puts "-" * 40
   puts "NAME".ljust(34) + "COHORT"
+  puts ""
  end
 
 
@@ -45,13 +45,3 @@ students = input_students
 print_header
 print_students(students)
 print_footer(students)
-
-# =>
-
-# >> Please enter the names of the student
-
-# ~> NoMethodError
-# ~> undefined method `chomp' for nil:NilClass
-# ~>
-# ~> /Users/daniele/Git/Projects/student-directory/Step 8/ex5.rb:5:in `input_students'
-# ~> /Users/daniele/Git/Projects/student-directory/Step 8/ex5.rb:45:in `<main>'
