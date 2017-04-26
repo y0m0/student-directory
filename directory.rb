@@ -12,7 +12,7 @@ def interactive_menu
     # 2. read the input and save it into a variable
     prompt
     # 3. do what the user has asked
-    process(gets.chomp)
+    process($stdin.gets.chomp)
   end
 end
 
@@ -41,28 +41,28 @@ def process(selection)
   end
 end
 
-def show_students
-  print_header
-  print_students_list
-  print_footer
-end
-
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
   # get the first name
   prompt
-  name = gets.chomp
+  name = $stdin.gets.chomp
   # while the name is not empty repeat this
   while !name.empty? do
     # add student hash to the array
-    @students << {name: name, cohort: :november}
+    @students << { name: name, cohort: :november }
     puts "Now we have #{@students.count} students"
     # get another name from the user
     prompt
     name = gets.chomp
   end
+end
+
+def show_students
+  print_header
+  print_students_list
+  print_footer
 end
 
 def print_header
@@ -90,8 +90,8 @@ def save_students
   file.close
 end
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename="students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
     @students << {name: name, cohort: cohort.to_sym}
@@ -99,4 +99,16 @@ def load_students
   file.close
 end
 
+def try_load_students
+  filename = ARGV.first
+  return if filename.nil?
+  if File.exist?(filename)
+    load_students(filename)
+  else
+    puts "Sorry, #{filename} doesn't exist."
+    exit
+  end
+end
+
+try_load_students
 interactive_menu
