@@ -7,11 +7,8 @@ end
 
 def interactive_menu
   loop do
-    # 1. print the menu and ask the user what to do
     print_menu
-    # 2. read the input and save it into a variable
     prompt
-    # 3. do what the user has asked
     process($stdin.gets.chomp)
   end
 end
@@ -44,18 +41,13 @@ end
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
-  # create an empty array
-  # get the first name
   prompt
   name = $stdin.gets.chomp
-  # while the name is not empty repeat this
   while !name.empty? do
-    # add student hash to the array
     add_student(name)
     puts "Now we have #{@students.count} students"
-    # get another name from the user
     prompt
-    name = gets.chomp
+    name = $stdin.gets.chomp
   end
 end
 
